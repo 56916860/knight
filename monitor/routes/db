@@ -1,0 +1,23 @@
+
+//获取当月报警事件统计
+SELECT att.name,A.total FROM alarm_type att LEFT JOIN (
+
+SELECT alarm_no,COUNT(alarm_no) as total from Device_Alarm_201708 GROUP BY alarm_no 
+)  A
+ON att.no = A.alarm_no
+ORDER BY A.total desc
+
+
+//按照设备查询报警个数
+SELECT device_code,count(*) as total FROM Device_Alarm_201708 da group da.device_code order by total desc
+
+//按照行程数量进行排序
+SELECT device_code,count(*) as total From Vehicle_Route vr group by vr.device_code,order by total desc
+
+
+//查询固定设备报警数量
+SELECT * FROM Device_Alarm_201708 da where da.device_code = 100000000004617
+and da.alarm_no = 204 and da.alarm_time > '2017-08-27'
+
+//报警类型
+SELECT * from alarm_type

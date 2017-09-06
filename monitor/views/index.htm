@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html id="global_html">
+  <head>
+    <title class="m_title">{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <link rel="bookmark" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1 class="m_title_h1">{{ title }}</h1>
+
+  	<div id="div_monitor_modules">
+  		<div class="row">
+  		  	<div class="col-xs-6 col-md-3" v-for="module in modules">
+  		  		<a v-bind:href="module.link" class="thumbnail">
+  		      		<img v-bind:data-src="module.image" alt="..." style="height: 100px;" class="b-lazy">
+                <div>{{ module.feature }}</div>
+  		    	</a>
+  		  	</div>
+  		</div>
+  	</div>
+
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+  	<script type="text/javascript" src="/lib/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="/lib/blazy/blazy.min.js"></script>
+    <script type="text/javascript">
+      /**
+       * 设置标题
+       */
+  		var index_config = { title :"【六点整监控分析系统】" };
+  		new Vue({
+  			el : '.m_title',
+  			data : index_config
+  		});
+
+  		new Vue({
+  			el : '.m_title_h1',
+  			data : index_config
+  		});
+
+      /**
+       * 设置功能引导
+       */
+  		var monitor_modules = {
+  			modules : [
+          {
+          feature : '设备基本信息',
+          image : "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503991811166&di=9641c4a909d14d0174a13a2f501b8ed4&imgtype=0&src=http%3A%2F%2Fimg2.shangxueba.com%2Fimg%2F2cto_artImg%2F20140523%2F16%2FCF8AEDE401F4242BC8FAA9D7D1E5E9E6.bmp",
+          link : "http://ci.bidostar.com/demo/tool.aspx"
+          },
+          {
+          feature : '设备事件查询',
+          image : "/images/event.png",
+          link : "http://ci.bidostar.com/event.html"
+          },
+          {
+          feature : '下发指令',
+          image : "/images/command.png",
+          link : "http://ci.bidostar.com/demo/ExtractFile.aspx"
+          },
+	  			/*{
+          feature : '用户认证',
+					image : "/images/image_1.jpg",
+					link : "/users/licenses.page"
+	  			},
+	  			{
+          feature : '认证数量',
+					image : '/images/image_1.jpg',
+					link : '/users/licenses_number'
+	  			},
+	  			{
+          feature : '最近行程',
+					image : '/images/image_1.jpg',
+					link : '/map/routes'			
+	  			},
+	  			/*{
+					image : '/images/image_1.jpg',
+					link : '/map'
+	  			},*/
+          {
+            feature : '设备状态搜索',
+            image : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504696147&di=829e57bfc24540ef69f470cec298ed59&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D1f641ef37cc6a7efad2ba0659593c524%2Fcf1b9d16fdfaaf510bab3a93865494eef01f7a56.jpg',
+            //image : 'http://new.bidostar.com/images/img/understanding/6-1.jpg',
+            //link : '/analyze/con_err'
+            link : '/analyze/debug.page?device_code='
+          },
+          {
+            feature : '潜在接线错误',
+            image : 'http://www.diy-robots.com/wp-content/uploads/2010/02/20100208038.jpg',
+            //image : 'http://new.bidostar.com/images/img/understanding/6-1.jpg',
+            //link : '/analyze/con_err'
+            link : '/analyze/con_err.page'
+          },
+          {
+            feature : '数据上报异常',
+            image : 'http://d.hiphotos.baidu.com/exp/w=500/sign=98406f8164d9f2d3201124ef99ed8a53/eaf81a4c510fd9f9349e0509232dd42a2934a4c1.jpg',
+            //image : 'http://new.bidostar.com/images/img/understanding/6-1.jpg',
+            //link : '/analyze/con_err'
+            link : '/analyze/con_exception.page'
+          },
+          {
+            feature : '设备网络异常',
+            image : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504098445&di=b0a1d90e4d97143e0b34766cc407d134&imgtype=jpg&er=1&src=http%3A%2F%2Fimgbdb3.bendibao.com%2Fsybdb%2F201612%2F1%2F20161201111930_36289.jpg',
+            //image : 'http://new.bidostar.com/images/img/understanding/6-1.jpg',
+            //link : '/analyze/con_err'
+            link : '/analyze/con_overmonth.page'
+          },
+          {
+            feature : '设备分布热力图',
+            image : '/images/image_1.jpg',
+            link : '/map/heat.page'
+          }
+  			]
+  		};
+  		new Vue({
+  			el : '#div_monitor_modules',
+  			data : monitor_modules
+  		});
+
+      var bLazy = new Blazy({});
+  	</script>
+  </body>
+</html>

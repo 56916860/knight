@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>用户认证</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href="/stylesheets/style.css" />
+</head>
+<body>
+ 	<h1 class="m_title_h1">{{ title }}</h1>
+
+    <div id="div_driverLicneses">
+      <div class="row">
+        <div class="col-xs-6 col-md-3" v-for="dl in driverLicenses">
+            <a class="thumbnail">
+                <img v-bind:src="dl.license_pic | convertUrl" v-bind:alt="dl.name">
+            </a>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+  	<script type="text/javascript" src="/lib/vue/dist/vue.min.js"></script>
+  	<script type="text/javascript">
+      /**
+       * 设置标题
+       */
+  		var index_config = { title :"【用户认证】" };
+  		new Vue({
+  			el : '.m_title',
+  			data : index_config
+  		});
+
+  		new Vue({
+  			el : '.m_title_h1',
+  			data : index_config
+  		});
+
+
+      /**
+       * 展示认证用户信息
+       */
+      var v_driverLicense = new Vue({
+        el : '#div_driverLicneses',
+        data : {driverLicenses:[]},
+        methods : {
+          showData : function(){
+              var _self = this;
+              $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : '/users/licenses',
+                success : function(data){
+                  _self.driverLicenses = data;
+                }
+              });
+          }
+        },
+        filters : {
+          convertUrl : function(data) {
+            return "http://res.bidostar.com" + data;
+          }
+        }
+      });
+
+      v_driverLicense.showData();
+  	</script>
+</body>
+</html>

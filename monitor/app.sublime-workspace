@@ -1,0 +1,417 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"crea",
+				"create_sql"
+			],
+			[
+				"query",
+				"query"
+			],
+			[
+				"con",
+				"conn"
+			],
+			[
+				"exe",
+				"execute"
+			],
+			[
+				"et",
+				"execute_time"
+			],
+			[
+				"inse",
+				"insert_val〔variable〕"
+			],
+			[
+				"execu",
+				"execute_time"
+			],
+			[
+				"in",
+				"insert_in_single"
+			],
+			[
+				"ins",
+				"insert_val〔argument〕"
+			],
+			[
+				"inser",
+				"insert_val〔variable〕"
+			],
+			[
+				"insert",
+				"insert_val〔variable〕"
+			],
+			[
+				"qu",
+				"query"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"p",
+				"pool"
+			],
+			[
+				"html",
+				"html;charset=utf-8"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"back",
+				"background-size"
+			],
+			[
+				"JSON",
+				"JSON.stringify"
+			],
+			[
+				"init",
+				"initConnection"
+			],
+			[
+				"res",
+				"res.end"
+			],
+			[
+				"sql",
+				"sqlText〔argument〕"
+			],
+			[
+				"conne",
+				"connection〔variable〕"
+			],
+			[
+				"mss",
+				"mssql_config〔variable〕"
+			],
+			[
+				"ms",
+				"mssql_config"
+			],
+			[
+				"err",
+				"err〔argument〕"
+			],
+			[
+				"pro",
+				"proto\tPrototype"
+			],
+			[
+				"sa",
+				"sayHelloWorld"
+			],
+			[
+				"Hell",
+				"HelloDemo〔class〕"
+			],
+			[
+				"He",
+				"HelloDemo"
+			],
+			[
+				"proc",
+				"process"
+			],
+			[
+				"s",
+				"sh_looper"
+			],
+			[
+				"t",
+				"timeout\tsetTimeout function"
+			],
+			[
+				"eve",
+				"eventEmitter〔variable〕"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"da",
+				"data_received"
+			],
+			[
+				"conn",
+				"connection"
+			],
+			[
+				"even",
+				"eventEmitter"
+			],
+			[
+				"ev",
+				"eventEmitter"
+			],
+			[
+				"Ev",
+				"eventEmitter"
+			],
+			[
+				"req",
+				"require"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:sftp",
+				"Package Control: Satisfy Dependencies"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/vicen/Desktop/monitor/routes/map.js",
+		"/Users/vicen/Library/Application Support/Sublime Text 3/Packages/User/SFTP.errors.log",
+		"/Users/vicen/Desktop/monitor/bin/www",
+		"/Users/vicen/Desktop/monitor/views/index.htm",
+		"/Users/vicen/Desktop/monitor/views/users/licenses.htm",
+		"/Users/vicen/Desktop/monitor/routes/users.js",
+		"/Users/vicen/Desktop/monitor/app.js",
+		"/Users/vicen/Desktop/monitor/routes/users/licenses.html",
+		"/Users/vicen/Desktop/monitor/routes/user.js",
+		"/Users/vicen/Desktop/monitor/public/db/db.js",
+		"/Users/vicen/Library/Application Support/Sublime Text 3/Packages/User/SFTP.sublime-settings",
+		"/Users/vicen/Desktop/monitor/public/stylesheets/style.css",
+		"/Users/vicen/Desktop/monitor/views/error.htm",
+		"/Users/vicen/Desktop/monitor/node_modules/_babel-runtime@5.8.38@babel-runtime/core-js.js",
+		"/Users/vicen/Desktop/monitor/views/monitor.html",
+		"/Users/vicen/Desktop/monitor/config/config.js",
+		"/Users/vicen/Desktop/monitor/routes/index.js",
+		"/Users/vicen/Desktop/monitor/package.json",
+		"/Users/vicen/Desktop/monitor/views/layout.htm",
+		"/Users/vicen/Desktop/monitor/sftp-config.json",
+		"/Users/vicen/Library/Application Support/Sublime Text 3/Packages/User/sftp_servers/monitor",
+		"/Users/vicen/Desktop/monitor/.bowerrc",
+		"/Users/vicen/Desktop/blog/.bowerrc",
+		"/Users/vicen/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
+		"/Users/vicen/Desktop/blog/routes/index.js",
+		"/Users/vicen/Library/Application Support/Sublime Text 3/Packages/User/SublimeCodeIntel.sublime-settings",
+		"/Users/vicen/Desktop/blog/views/index.htm",
+		"/Users/vicen/Desktop/blog/bower.json",
+		"/Users/vicen/Desktop/blog/routes/hello.js",
+		"/Users/vicen/Desktop/blog/bin/www",
+		"/Users/vicen/Desktop/blog/app.js",
+		"/Users/vicen/Desktop/blog/package.json",
+		"/Users/vicen/Desktop/blog/routes/users.js",
+		"/Users/vicen/Desktop/blog/views/error.htm",
+		"/Users/vicen/Desktop/blog/node_modules/ejs/test/fixtures/hello-world.ejs",
+		"/Users/vicen/Desktop/blog/readme.txt",
+		"/Users/vicen/Desktop/blog/node_modules/accepts/index.js",
+		"/Users/vicen/Desktop/hello_w.js",
+		"/Users/vicen/Desktop/blog/node_modules/basic-auth/package.json",
+		"/Users/vicen/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"mysql",
+			"const",
+			"index",
+			"redirect"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 111.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 228.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "app.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"index.",
+				"monitor/views/index.htm"
+			],
+			[
+				"app",
+				"monitor/app.js"
+			],
+			[
+				"config",
+				"monitor/config/config.js"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"index",
+				"routes/index.js"
+			],
+			[
+				"hello",
+				"node_modules/ejs/test/fixtures/hello-world.ejs"
+			],
+			[
+				"json",
+				"node_modules/basic-auth/package.json"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

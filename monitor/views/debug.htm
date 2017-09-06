@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html id="global_html">
+  <head>
+    <title class="m_title">{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <link rel="bookmark" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href="/stylesheets/style.css" />
+    <style type="text/css">
+      td {color: white;}
+    </style>
+  </head>
+  <body>
+    <div id="div_monitor_modules">
+      <div id="div_monitor_modules">
+        <input class="btn" type="text" placeholder="请输入设备编码" id="d_device_code" v-model="device_code"/>
+        <button class="btn" type="button" id="search_btn">点击搜索</button>
+      </div>
+      <!--用户信息-->
+      <div class="m_title_h1">用户信息</div>
+      <div id="user_info">
+        <table class="table table-condensed table-bordered sortable">
+          <thead>
+            <tr><td>IMEI</td><td>IMSI</td><td>设备编码</td><td>用户昵称</td><td>手机号</td><td>渠道</td><td>用户注册时间</td><td>最后一次登陆时间</td><td>车牌号</td><td>设备绑定时间</td></tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>{{ d_userInfo.imei }}</td>
+              <td>{{ d_userInfo.imsi }}</td>
+              <td>{{ d_userInfo.device_code }}</td>
+              <td>{{ d_userInfo.name }}</td>
+              <td>{{ d_userInfo.phone }}</td>
+              <td>{{ d_userInfo.channelName }}</td>
+              <td>{{ d_userInfo.create_date }}</td>
+              <td>{{ d_userInfo.last_login_date }}</td>
+              <td>{{ d_userInfo.licensePlate }}</td>
+              <td>{{ d_userInfo.device_bind_time | convertTime }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <!-- 设备事件 -->
+    <div class="m_title_h1">各事件最后一次状态</div>
+      <div id="event_info">
+        <table class="table table-condensed table-bordered sortable">
+          <thead>
+            <tr>
+              <td>事件</td>
+              <td>设备采集时间</td>
+              <td>平台接收时间</td>
+              <td>经纬度</td>
+              <td>定位状态</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  v-for="item in d_eventInfo">
+              <td>{{ item.name }}</td>
+              <td>{{ item.alarm_time | convertTime }}</td>
+              <td>{{ item.create_time | convertTime }}</td>
+              <td>{{ item.latitude/1000000 }} ,{{ item.longitude/1000000 }}</td>
+              <td v-if="item.is_location == true">定位成功</td>
+              <td v-else>定位失败</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- 设备事件 -->
+    <div class="m_title_h1">最近10个行程</div>
+      <div id="routes_info">
+        <table class="table table-condensed table-bordered sortable">
+          <thead>
+            <tr>
+              <td>序号</td>
+              <td>行程开始时间</td>
+              <td>行程结束时间</td>
+              <td>行程位置</td>
+              <td>经纬度</td>
+              <td>平台接收时间</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  v-for="(item,index) in d_routeInfo">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.startTime | convertTime }}</td>
+              <td>{{ item.endTime | convertTime }}</td>
+              <td>{{ item.startLocation }} - {{ item.endLocation }} </td>
+              <td>{{ item.startLatitude/1000000 }} , {{ item.endLongitude/1000000 }} - {{ item.endLatitude/1000000 }} ,{{ item.endLongitude/1000000 }}</td>
+              <td>{{ item.create_time | convertTime }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- 流量 -->
+    <div class="m_title_h1">当月最近10个流量上报</div>
+      <div id="flow_info">
+        <table class="table table-condensed table-bordered sortable">
+          <thead>
+            <tr>
+              <td>序号</td>
+              <td>设备开始时间</td>
+              <td>设备结束时间</td>
+              <td>流量</td>
+              <td>总流量</td>
+              <td>平台接收时间</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  v-for="(item,index) in d_flowInfo">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.start_time | convertTime }}</td>
+              <td>{{ item.end_time | convertTime }}</td>
+              <td>{{ item.flow }} </td>
+              <td>{{ item.total_flow }}</td>
+              <td>{{ item.create_time | convertTime }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+  	<script type="text/javascript" src="/lib/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="/lib/moment/moment-with-locales.js"></script>
+    <script type="text/javascript">
+    function getQueryString(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+          return unescape(r[2]);
+      }
+      return null;
+    }
+
+      var v_dc = new Vue({
+        el: '#d_device_code',
+        data: {
+          device_code: getQueryString("device_code")
+        }
+      })
+
+      /**
+       * 设置标题
+       */
+  		var index_config = { title :"【用户&设备管理】" };
+  		new Vue({
+  			el : '.m_title',
+  			data : index_config
+  		});
+
+  		new Vue({
+  			el : '.m_title_h1',
+  			data : index_config
+  		});
+
+
+      /**
+       * 获取用户信息
+       */
+      var v_userlist = new Vue({
+        el : '#user_info',
+        data : {d_userInfo:[]},
+        methods : {
+          query : function(){
+              var _self = this;
+              $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : '/users/info?device_code=' + v_dc.device_code,
+                success : function(data){
+                  _self.d_userInfo = data;
+                }
+              });
+          }
+        },
+        filters : {
+          convertTime : function(data) {
+            return moment(data).utc().format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      });
+
+
+
+      //http://api.bidostar.com:3000
+      //获取设备调试信息
+      var v_events = new Vue({
+        el : '#event_info',
+        data : {d_eventInfo:[]},
+        methods : {
+          query : function(){
+              var _self = this;
+              $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : '/analyze/lastest_event?device_code='+v_dc.device_code,
+                success : function(data){
+                  _self.d_eventInfo = data;
+                }
+              });
+          }
+        },
+        filters : {
+          convertTime : function(data) {
+            return moment(data).utc().format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      });
+
+
+      //获取行程信息
+      var v_routes = new Vue({
+        el : '#routes_info',
+        data : {d_routeInfo:[]},
+        methods : {
+          query : function(){
+              var _self = this;
+              $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : '/analyze/routes?device_code='+v_dc.device_code,
+                success : function(data){
+                  _self.d_routeInfo = data;
+                }
+              });
+          }
+        },
+        filters : {
+          convertTime : function(data) {
+            return moment(data).utc().format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      });
+
+
+
+      //获取流量信息
+      var v_flow = new Vue({
+        el : '#flow_info',
+        data : {d_flowInfo:[]},
+        methods : {
+          query : function(){
+              var _self = this;
+              $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : '/analyze/flow?device_code='+v_dc.device_code,
+                success : function(data){
+                  _self.d_flowInfo = data;
+                }
+              });
+          }
+        },
+        filters : {
+          convertTime : function(data) {
+            return data == null ? data : moment(data).utc().format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      });
+
+
+      $(document).ready(function(){
+
+        if(v_dc.device_code != ''){
+
+            v_userlist.query();
+
+            v_events.query();
+
+            v_routes.query();
+
+            v_flow.query();
+        }
+
+
+
+        $("#search_btn").bind("click",function(){
+            if(v_dc.device_code != ''){
+              window.location.href = '/analyze/debug.page?device_code='+v_dc.device_code;
+            }
+            else{
+              alert("请输入设备编码");
+            }
+          });
+
+          $('#d_device_code').on('keypress',function(event){
+              if(event.keyCode == 13) {
+                $("#search_btn").trigger("click");
+              }    
+          });
+      });
+  	</script>
+  </body>
+</html>

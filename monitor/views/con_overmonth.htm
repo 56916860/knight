@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title class="m_title">{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <link rel="bookmark" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href="/stylesheets/style.css" />
+    <style type="text/css">
+    	td{color: white;}
+
+    	thead>tr>td{background: white;color: black;}
+    </style>
+  </head>
+  <body>
+	<h1 class="m_title_h1">{{ title }}</h1>
+
+  	<div id="div_monitor_modules">
+		<table class="table table-condensed table-bordered sortable" >
+			<thead>
+				<tr><td>序号</td><td>车牌号</td><td>设备编码</td><td>IMEI</td><td>IMSI</td><td>最后一次数据上报时间</td><td>最后行程时间</td><td>版本</td><td>渠道</td><td>设备绑定时间</td></tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index)  in deviceList" v-on:click="redirect" v-bind:attr="item.device_code">
+				<td>{{ index + 1}}</td>
+				<td>{{ item.licensePlate }}</td>
+				<td>{{ item.device_code }}</td>
+				<td>{{ item.imei }}</td>
+				<td>{{ item.imsi }}</td>
+				<td>{{ item.lastReportTime | convertTime }}</td>
+				<td>{{ item.endTime | convertTime }}</td>
+				<td>--</td>
+				<td>{{ item.channelName }}</td>
+        <td>{{ item.device_bind_time | convertTime }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/vue/dist/vue.min.js"></script>
+  <script type="text/javascript" src="/lib/sorttable/sorttable.js"></script>
+  <script type="text/javascript" src="/lib/moment/moment-with-locales.js"></script>
+
+  <script type="text/javascript">
+      /**
+       * 设置标题
+       */
+  		var index_config = { title :"【潜在设备异常: 10天之内无任何事件上报】" };
+  		new Vue({
+  			el : '.m_title',
+  			data : index_config
+  		});
+
+  		new Vue({
+  			el : '.m_title_h1',
+  			data : index_config
+  		});
+
+  	   /**
+       * 展示设备列表
+       */
+      var v_devicelist = new Vue({
+        el : '#div_monitor_modules',
+        data : {deviceList:[]},
+        methods : {
+          redirect: function (event) {
+              if (event) {
+                window.location.href = "/analyze/debug.page?device_code=" + event.target.parentNode.attributes[0].value;
+                //window.open("/analyze/debug.page?device_code=" + event.target.parentNode.attributes[0].value);
+              }
+          },
+          showData : function(){
+              var _self = this;
+              $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : '/analyze/con_overmonth',
+                success : function(data){
+                  _self.deviceList = data;
+                  console.log(index_config.title);
+                  index_config.title += "总数：" + _self.deviceList.length + ",故障率："+ Math.floor(_self.deviceList.length* 100) / 8000 +"%";
+                  console.log(index_config.title);
+                }
+              });
+          }
+        },
+        filters : {
+          convertTime : function(data) {
+            return data == null ? data : moment(data).utc().format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      });
+
+      v_devicelist.showData();
+  	</script>
+  	</script>
+  </body>
+</html>
